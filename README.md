@@ -176,17 +176,47 @@ sudo systemctl restart nginx
 ```
 
 ---
-
 # 🔑 API Authentication Configuration
 
-The application uses an OpenWeather API key stored locally in:
+The Flask Weather API application requires an OpenWeather API key in order to retrieve live weather information.
 
-```text
-api_key.py
+After the deployment script completed, the API key file was created manually on the EC2 instance.
+
+The project directory was accessed:
+
+```bash
+cd ~/spartaglobal
 ```
 
-The API key was added after deployment to allow the Flask application to authenticate with the OpenWeather API.
+The API key file was then opened using Nano:
 
+```bash
+nano api_key.py
+```
+
+The OpenWeather API key was pasted into the file as plain text:
+
+```text
+YOUR_OPENWEATHER_API_KEY
+```
+
+The file was then saved using:
+
+```text
+CTRL + O
+ENTER
+CTRL + X
+```
+
+The API key was verified using:
+
+```bash
+cat api_key.py
+```
+
+This step was necessary because the Flask application reads the API key directly from the `api_key.py` file when making requests to the OpenWeather API service.
+
+> **Security Note:** API keys should not be committed to public GitHub repositories. In a production environment, environment variables or secret management services should be used instead of plain text files.
 ---
 
 # 🐍 Running the Flask Application
